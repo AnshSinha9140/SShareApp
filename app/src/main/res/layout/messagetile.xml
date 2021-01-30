@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/linear_layout"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:layout_gravity="left"
+        android:background="@drawable/their_message"
+        android:id="@+id/messageText_left">
+
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        android:layout_gravity="right"
+        android:background="@drawable/my_message"
+        android:id="@+id/messageText_right">
+
+
+    </TextView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:maxHeight="100dp"
+        android:maxWidth="120dp"
+        android:scaleType="fitCenter"
+
+        android:layout_gravity="left"
+
+        android:visibility="gone"
+        android:id="@+id/tileImage_left">
+
+    </ImageView>
+
+
+
+</LinearLayout>
