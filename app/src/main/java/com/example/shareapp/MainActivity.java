@@ -30,11 +30,9 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView text;
     int room = 1234;
-
     private static  final int Message_sender  = 1;
     private static  final int Message_Other_sender  = 2;
     private static  final  int Image_Sender = 3;
@@ -128,7 +126,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void call(Object... args) {
 
+                  String comingStr = (String) args[0];
+                  Log.i(TAG, "call: " + comingStr);
+                  final String pureBase64Encoded = comingStr.substring(comingStr.indexOf(",")  + 1);
+                  final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+                  Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                  decodedBitmap.compress(Bitmap.CompressFormat.JPEG,100,bytes);
+                  int myVersion = Build.VERSION.SDK_INT;
+                 if (myVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    checkIfAlreadyhavePermission();
+                 }
+                  String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),decodedBitmap,"val",null);
+                  Log.i(TAG, "callPaths : " + path);
+                  Uri uri = Uri.parse(path);
 
+                  chatList.add(new ShareModel(uri,"Receiver",Image_Receiver));
                   runOnUiThread(new Runnable() {
                       @Override
                       public void run() {
